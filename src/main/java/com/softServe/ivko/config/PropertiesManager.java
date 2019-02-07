@@ -1,9 +1,11 @@
 package com.softServe.ivko.config;
 
 import com.softServe.ivko.exception.ApplicationException;
+import org.apache.commons.lang3.CharUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
 import java.util.Properties;
 
 public class PropertiesManager {
@@ -33,5 +35,15 @@ public class PropertiesManager {
             }
         }
         return properties;
+    }
+
+    public static char charExpression(int a) {
+        char c;
+        c = (char)a;
+        return c;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(charExpression(29));
     }
 }

@@ -8,19 +8,27 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="libs/bootstrap-4.1.3/css/bootstrap.min.css">
+    <style type="text/css">
+        body {
+            background-image: url("img/orig.jpeg");
+            background-size: cover;
+        }
+    </style>
 </head>
 <body>
 <div>
     <div class="body">
-        <div class="container">
+        <div class="container" align="center">
             <div class="row">
                 <div class="col-xs-6 whiteback">
                     <h3 class="text-center">List of Managers</h3>
                     <hr>
-                    <div class="row">
-                        <form method="get" action="/managers?id=${id}">
-                            <div class="col-xs-3">
-                                <input type="search" name="id">
+                    <div class="row" align="center">
+                        <form method="get" action="${pageContext.request.contextPath}/managers?id=${id}">
+                            <div class="col-xs-3" align="center">
+                                <label>
+                                    <input type="search" name="id">
+                                </label>
                             </div>
                             <div class="col-xs-3">
                                 <input type="submit" value="Search" class="btn btn-primary btn-success"
@@ -31,7 +39,8 @@
                     <hr>
                     <div class="row justify-content-md-center">
                         <div class="col-xs-10 table-responsive justify-content-md-center">
-                            <form class="col-10 justify-content-md-center" action="/managers" method="get">
+                            <form class="col-10 justify-content-md-center"
+                                  action="${pageContext.request.contextPath}/managers" method="get">
                                 <table class="table" id="table">
                                     <thead>
                                     <tr>
@@ -86,13 +95,15 @@
                                             </td>
                                             <td>
                                                 <div class="col-xs-1">
-                                                    <a href="/managers?id=${manager.id}" type="button"
+                                                    <a href="${pageContext.request.contextPath}/managers?id=${manager.id}"
+                                                       type="button"
                                                        class="btn btn-primary btn-success">Show</a>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="col-xs-1">
-                                                    <a href="/managers?id=${manager.id}&_method=delete" type="button"
+                                                    <a href="${pageContext.request.contextPath}/managers?id=${manager.id}&_method=delete"
+                                                       type="button"
                                                        class="btn btn-primary">Delete</a>
                                                 </div>
                                             </td>
@@ -107,7 +118,8 @@
                         </div>
                     </div>
                     <div class="col-xs-3">
-                        <a href="/profile.jsp?create=true" type="button" class="btn btn-primary">Add Manager</a>
+                        <a href="${pageContext.request.contextPath}/profile.jsp?create=true" type="button"
+                           class="btn btn-primary">Add Manager</a>
                     </div>
                     <br/><br/>
                 </div>

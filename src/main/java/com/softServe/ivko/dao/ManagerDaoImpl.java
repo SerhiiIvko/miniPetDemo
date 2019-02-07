@@ -6,6 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ManagerDaoImpl implements ManagerDao {
@@ -13,6 +14,10 @@ public class ManagerDaoImpl implements ManagerDao {
     private static final String MANAGER_BY_EMAIL_QUERY = "select * from manager where email = '%s'";
     private static final String ALL_MANAGERS_QUERY = "select * from manager";
     private static final String ERROR_MESSAGE_PATTERN = "Manager not found by %s: %s";
+    private static final String INSERT_MANAGER_QUERY = "insert into manager (name, surname, age, email, password) values (?, ?, ?, ?, ?)";
+    private static final String UPDATE_MANAGER_QUERY = "update manager set name=?, surname=?, age=?, email=?%s where id=?";
+    private static final String UPDATE_PASSWORD_PART = ", password=?";
+    private static final String DELETE_MANAGER_QUERY = "delete from manager where id=?";
 
     @Override
     public Manager getById(Long id) {
@@ -71,8 +76,6 @@ public class ManagerDaoImpl implements ManagerDao {
         return managers;
     }
 
-    private static final String INSERT_MANAGER_QUERY = "insert into manager (name, surname, age, email, password) values (?, ?, ?, ?, ?)";
-
     @Override
     public Manager create(Manager manager) {
         try (Connection connection = retrieveConnection();
@@ -92,9 +95,6 @@ public class ManagerDaoImpl implements ManagerDao {
         }
         return manager;
     }
-
-    private static final String UPDATE_MANAGER_QUERY = "update manager set name=?, surname=?, age=?, email=?%s where id=?";
-    private static final String UPDATE_PASSWORD_PART = ", password=?";
 
     @Override
     public Manager update(Manager manager) {
@@ -135,8 +135,6 @@ public class ManagerDaoImpl implements ManagerDao {
             throw new ApplicationException("Failed to update managers", e);
         }
     }
-
-    private static final String DELETE_MANAGER_QUERY = "delete from manager where id=?";
 
     @Override
     public void deleteManager(Manager manager) {
